@@ -8,7 +8,6 @@
  *
 */
 
-
 /* ---- Base Rules ---- */
 body {
     background: rgb(136,203,171);
@@ -26,6 +25,13 @@ h1 {
     margin: 2em 1rem;
 }
 
+#page__location {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 0.5em;
+    padding-bottom: 0.5em;
+    color: rgb(136,203,171);
+}
+
 @media only screen and (min-width: 35em){
     h1 {
         font-size: 7em;
@@ -38,6 +44,9 @@ h2 {
     font-family: 'Oxygen', Sans-Serif;
     font-size: 3em;
     color: #fff;
+    height: 10%;
+    width: 100%;
+
 }
 
 p {
@@ -51,8 +60,9 @@ main {
 }
 
 .main-hero {
-    min-height: 40vh;
-    padding-top: 3em;
+    min-height: 80vh;
+    margin: 10vh;
+    padding-top: 10vh;
 }
 
 section {
@@ -60,10 +70,18 @@ section {
     min-height: 80vh;
 }
 
-
 /* ---- Module Rules ---- */
 
 /* Navigation Styles*/
+
+.show {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
 .navbar__menu ul {
     padding-left: 0;
     margin: 0;
@@ -74,7 +92,14 @@ section {
     display: inline-block;
 }
 
-.navbar__menu .menu__link {
+.dropdown {
+    position: fixed;
+    z-index: 5;
+    display: inline-block;
+    background: white;
+}
+
+.menu__link {
     display: block;
     padding: 1em;
     font-weight: bold;
@@ -82,19 +107,69 @@ section {
     color: #000;
 }
 
-.navbar__menu .menu__link:hover {
+.menu__link:hover {
     background: #333;
     color: #fff;
     transition: ease 0.3s all;
 }
 
 /* Header Styles */
+
 .page__header {
     background: #fff;
     position: fixed;
     top: 0;
     width: 100%;
+    height: 10vh;
+    background: white;
     z-index: 5;
+}
+
+.header_title {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 2em;
+    margin: 1rem;
+    color: #000;
+}
+
+.nav_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#icon {
+    display: none;
+    font-size: 2em;
+    margin: 1rem;
+    color: #000;
+}
+
+#dropdown{
+    display: none;
+    height: 50vh;
+    width: 100vw;
+    background: white;
+}
+
+@media only screen and (max-width: 700px) {
+    #icon {
+        display: block;
+        font-size: 2em;
+        margin: 1rem;
+        color: #000;
+    }
+
+    #navbar__list {
+        display: none;
+    }
+
+    #dropdown{
+        display: block;
+        height: 50vh;
+        width: 100vw;
+        background: white;
+    }
 }
 
 /* Footer Styles */

@@ -31,8 +31,10 @@ const dropdown = document.getElementById('dropdown');
 const sections = document.querySelectorAll('section');
 // Get object of section dimensions locations in window
 const boxes = getBoxDimensions()
-// Get burger icon
+// Get burger icon location
 const burger = document.querySelector('#icon');
+// Get drop down nav icon
+const dropDownNav = document.querySelector('#iconImg');
 // Get page location id
 const pageLocationID = document.querySelector('#page__location');
 
@@ -42,7 +44,7 @@ const pageLocationID = document.querySelector('#page__location');
  * 
 */
 
-// 
+// stores all section dimensions and locations in window as objects
 function getBoxDimensions() {
     const allSections = {};
     for (const section of sections) {
@@ -84,13 +86,14 @@ window.addEventListener('scroll', () => {
     }
 });
 
+// function to add active class to section 
 function makeActive(currentLocation, currentSection){
     //Find a value that works best, but 150 seems to be a good start.
     if (boxes[currentSection].top <= currentLocation && boxes[currentSection].bottom >= currentLocation) {
         //apply active state on current section and corresponding Nav link
         document.getElementById(currentSection).classList.add('your-active-class');
     }
-    //Remove active state from other section and corresponding Nav link
+    //Remove active state from other sections
     for (const section of sections) {
         if (section.id !== currentSection){
             document.getElementById(section.id).classList.remove('your-active-class');
@@ -108,16 +111,26 @@ function makeActive(currentLocation, currentSection){
 window.addEventListener('resize', () => {
     // Toggle burger on
     if (window.innerWidth <= 700) {
+        // show burger
         burger.classList.remove('hidden');
         burger.classList.add('show');
+        // hide nav list
         navList.classList.remove('show');
         navList.classList.add('hidden');
+        // hide dropdown
+        dropdown.classList.remove('show');
+        dropdown.classList.add('hidden');
     } 
     if (window.innerWidth > 700) {
+        // hide burger
         burger.classList.remove('show');
         burger.classList.add('hidden');
+        // show nav list
         navList.classList.remove('hidden');
         navList.classList.add('show');
+        // hide dropdown
+        dropdown.classList.remove('show');
+        dropdown.classList.add('hidden');
     }
   });
 
@@ -137,7 +150,6 @@ function generateNav (whichParent) {
         const sectionId = section['id'];
         // create list item
         const sectionNav = document.createElement('li');
-        sectionNav.setAttribute('class', 'dropdown__link');
         // create link
         const sectionLink = document.createElement('a');
         // set link attributes
@@ -157,28 +169,30 @@ function generateNav (whichParent) {
     }
 }
 
+// Toggle between showing and hiding the navigation menu when the user clicks on the hamburger menu / bar icon
 function clickBurger() {
 
-    var link = document.getElementsByClassName('dropdown__link');
-
+    // Toggle menu off, hide dropdown, icon=menu
     if (burger.classList.contains('active')) {
         dropdown.classList.add('hidden');
         dropdown.classList.remove('show');
         burger.classList.remove('active');
-    } else {
+        dropDownNav.innerHTML = 'menu';
+    } 
+    // Toggle menu on, show dropdown, icon=close
+    else {
         burger.classList.add('active');
         dropdown.classList.add('show');
-        dropdown.classList.remove('hidden');  
+        dropdown.classList.remove('hidden');
+        dropDownNav.innerHTML = 'close';  
     }
 }
 
 // Scroll to anchor ID using scrollTO event
 function smoothScroll(to) {
-
-    console.log(to)
-
+    // object to ScrollTo (must be object, not number)
     const boxTop = to;
-
+    // scroll to object location
     window.scrollTo({top: boxTop, behavior: 'smooth'});
     
 }

@@ -12,6 +12,19 @@ To get started, open `js/app.js` and start building out the app's functionality
 
 For specific, detailed instructions, look at the project instructions in the Udacity Classroom.
 
-## TODO:
-1. fix smooth scroll to section 1
-2. close dropdown 
+## Features:
+
+1. Responsive navbar.
+2. Scrolling location reflected on page.
+3. Smooth scrolling.
+
+## Stack:
+
+1. HTML
+2. CSS
+3. JS
+
+## To Run:
+
+1. Clone or download repo
+2. run index.html

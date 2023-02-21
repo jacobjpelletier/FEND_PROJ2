@@ -124,14 +124,6 @@ window.addEventListener('resize', () => {
 // Toggle between showing and hiding the navigation menu when the user clicks on the hamburger menu / bar icon
 function generateNav (whichParent) {
 
-    function isWindowTop(section) {
-        if (section.id !== 'section1') {
-            return boxes[section.id].top + window.pageYOffset;
-        } else {
-            return 0;
-        }
-    }
-
     // loop through all sections and create a list item for each section
     for (let i = 0; i < sections.length; i++) {
         // get section name and id
@@ -145,11 +137,12 @@ function generateNav (whichParent) {
         const sectionId = section['id'];
         // create list item
         const sectionNav = document.createElement('li');
+        sectionNav.setAttribute('class', 'dropdown__link');
         // create link
         const sectionLink = document.createElement('a');
         // set link attributes
         //sectionLink.setAttribute('href', `#${sectionId}`);
-        // set link class
+        // set link classes
         sectionLink.setAttribute('class', 'menu__link');
         // set link text
         sectionLink.innerText = sectionName;
@@ -165,15 +158,17 @@ function generateNav (whichParent) {
 }
 
 function clickBurger() {
+
+    var link = document.getElementsByClassName('dropdown__link');
+
     if (burger.classList.contains('active')) {
         dropdown.classList.add('hidden');
         dropdown.classList.remove('show');
         burger.classList.remove('active');
-        
     } else {
         burger.classList.add('active');
         dropdown.classList.add('show');
-        dropdown.classList.remove('hidden');
+        dropdown.classList.remove('hidden');  
     }
 }
 
@@ -182,7 +177,7 @@ function smoothScroll(to) {
 
     console.log(to)
 
-    const boxTop = to + window.pageYOffset;
+    const boxTop = to;
 
     window.scrollTo({top: boxTop, behavior: 'smooth'});
     

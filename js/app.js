@@ -92,11 +92,13 @@ function makeActive(currentLocation, currentSection){
     if (boxes[currentSection].top <= currentLocation && boxes[currentSection].bottom >= currentLocation) {
         //apply active state on current section and corresponding Nav link
         document.getElementById(currentSection).classList.add('your-active-class');
+        document.getElementsByClassName('menu__link')[currentSection.slice(-1) - 1].classList.add('your-active-class');
     }
     //Remove active state from other sections
     for (const section of sections) {
         if (section.id !== currentSection){
             document.getElementById(section.id).classList.remove('your-active-class');
+            document.getElementsByClassName('menu__link')[section.id.slice(-1) - 1].classList.remove('your-active-class');
         }
     }
 }
